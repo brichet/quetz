@@ -1,0 +1,8 @@
+node_modules
+**/node_modules
+**/lib
+**/build
+**/static
+quetz_frontend/app/themes
+builder
+examples/light_theme

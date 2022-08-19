@@ -7,6 +7,23 @@ build
 dist/
 .jupyter_releaser_checkout/
 
+node_modules
+quetz/frontend/app/build
+quetz/frontend/app/static
+quetz/frontend/app/schemas
+quetz/frontend/app/themes
+quetz/frontend/app/style.js
+lib
+*.tsbuildinfo
+
+docs/_build
+docs/api
+docs/source/_build
+
+yarn-error.log
+
+frontend_extension_examples/tests/test_quetz
+
 # Build files
 *.egg-info
 
@@ -15,7 +32,13 @@ test_quetz
 
 # Logs
 *.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
 # IDE
 .idea/
 .vscode/
+
+#System
+.DS_Store

@@ -1,0 +1,83 @@
+{
+  "name": "@quetz-example/light-theme",
+  "version": "0.3.1",
+  "description": "A light theme extension for Quetz.",
+  "keywords": [
+    "quetz",
+    "quetz-frontend",
+    "quetz-frontend-extension"
+  ],
+  "homepage": "https://github.com/mamba-org/quetz-frontend/tree/main/examples/light_theme",
+  "bugs": {
+    "url": "https://github.com/mamba-org/quetz-frontend/tree/main/examples/light_theme/issues"
+  },
+  "license": "BSD-3-Clause",
+  "author": {
+    "name": "QuantStack",
+    "email": ""
+  },
+  "files": [
+    "lib/**/*.{d.ts,eot,gif,html,jpg,js,js.map,json,png,svg,woff2,ttf}",
+    "style/**/*.{css,js,eot,gif,html,jpg,json,png,svg,woff2,ttf}"
+  ],
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "style": "style/index.css",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mamba-org/quetz-frontend.git"
+  },
+  "scripts": {
+    "build": "yarn run build:lib && yarn run build:extension:dev",
+    "build:prod": "yarn run clean && yarn run build:lib && yarn run build:extension",
+    "build:extension": "quetz-frontend build .",
+    "build:extension:dev": "quetz-frontend build --development .",
+    "build:lib": "tsc",
+    "clean": "yarn run clean:lib",
+    "clean:lib": "rimraf lib tsconfig.tsbuildinfo",
+    "clean:extension": "rimraf quetz_light_theme/quetzextension",
+    "clean:all": "yarn run clean:lib && yarn run clean:extension",
+    "eslint": "eslint . --ext .ts,.tsx --fix",
+    "eslint:check": "eslint . --ext .ts,.tsx",
+    "install:extension": "yarn run build",
+    "watch": "run-p watch:src watch:extension",
+    "watch:src": "tsc -w",
+    "watch:extension": "quetz-frontend watch ."
+  },
+  "dependencies": {
+    "@jupyterlab/apputils": "^3.2.7",
+    "@quetz-frontend/application": "^0.3.1"
+  },
+  "devDependencies": {
+    "@quetz-frontend/builder": "^3.3.1",
+    "@typescript-eslint/eslint-plugin": "^4.8.1",
+    "@typescript-eslint/parser": "^4.8.1",
+    "eslint": "^7.14.0",
+    "eslint-config-prettier": "^6.15.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "^7.25.1",
+    "lint-staged": "^11.1.2",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.4.0",
+    "rimraf": "^3.0.2",
+    "shell-quote": "^1.7.2",
+    "typescript": "~4.1.3"
+  },
+  "sideEffects": [
+    "style/*.css"
+  ],
+  "private": true,
+  "quetz": {
+    "extension": true,
+    "outputDir": "quetz_light_theme/quetzextension",
+    "themePath": "style/index.css"
+  },
+  "jupyter-releaser": {
+    "hooks": {
+      "before-build-npm": [
+        "python -m pip install quetz-frontend",
+        "yarn"
+      ]
+    }
+  }
+}
