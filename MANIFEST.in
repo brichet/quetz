@@ -13,11 +13,15 @@ include download-test-package.sh
 recursive-include quetz/migrations *.*
 recursive-include quetz/tests *.*
 recursive-include quetz_db_ext *
-recursive-include quetz_frontend *.*
 
-graft quetz/basic_frontend
+# Includes the frontend
+graft quetz/frontend/app
+graft packages
+
+prune quetz_frontend/app/build
+prune **/node_modules
+
 include quetz/config.toml
-graft quetz/templates
 
 recursive-exclude plugins *.*
 recursive-exclude quetz_client *.*
